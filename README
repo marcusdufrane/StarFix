@@ -1,0 +1,4 @@
+Start the application
+> python app.py
+
+Access it at: http://localhost:8080
