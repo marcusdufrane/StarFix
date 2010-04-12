@@ -1,38 +1,35 @@
 #!/usr/bin/env python
 
-import sys
+class Section:
+    def __init__(self, name, contents):
+        self.name = name
+        self.contents = contents  
 
-if len(sys.argv) != 2:
-    print 'Usage: convert_stary.py filename'
-    sys.exit(1)
+    # maps dictionary accesses to attributes: section['name'] -> section.name
+    def __getitem__(self, index):
+        return getattr(self, index)
+
+class Star:
+    def __init__(self):
+        self.sections = []
+        self.name = ''
+
+    def add_section(self, name, body):
+        self.sections.append(Section(name, body))
+
+
+def cleanup_name(name):
+    last, first = name.split(',')
+    return first + ' ' + last
+
+def parse_star(star_file):
+    lines = star_file.readlines()
     
-filename = sys.argv[1]
-
-star_file = open(filename)
-output_filename = filename + '-pretty.html'
-output_file = open(output_filename, 'w')
-
-output_file.write(
-"""<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-""")
-
-output_file.write(
-"""
-    <title>%s</title>
-""" % output_filename)
-
-output_file.write(
-"""
-</head>
-<body>
-""")
-
-lines = star_file.readlines()
-
-output_file.write(
-"""</body>
-</html>
-""")
+    star = Star()
+    
+    star.name = cleanup_name(lines[1])
+    
+    star.add_section("Section One", "Contentz")
+    star.add_section("Section Two", "Contentzz")
+    
+    return star

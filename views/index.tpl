@@ -5,11 +5,11 @@
   </head>
   <body>
     <h1>StarFix</h1>
-    <p>Please upload your STAR</p>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-      <input name="datafile" type="file" />
+    <p>Upload the STAR to be beautified</p>
+    <form action="/result" method="post" enctype="multipart/form-data">
+      <input name="starfile" type="file" />
       <br /><br />
-      <input name="submit" type="submit" value="Upload" />
+      <input name="submit" type="submit" value="Beutify!" />
     </form>
   </body>
 </html>
