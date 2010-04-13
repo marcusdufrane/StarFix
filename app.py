@@ -25,6 +25,5 @@ def template_result():
     context['sections'] = star.sections
     return context
     
-
-run(host='localhost', port=8080)
+run(host='localhost', port=8080, reloader=True)
 
